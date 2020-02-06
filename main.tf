@@ -43,7 +43,7 @@ resource "google_compute_forwarding_rule" "default" {
 
 resource "google_compute_region_backend_service" "default" {
   project          = var.project
-  name             = var.health_check["type"] == "tcp" ? "${var.name}-with-tcp-hc" : "${var.name}-with-http-hc"
+  name             = var.name
   region           = var.region
   protocol         = var.ip_protocol
   timeout_sec      = 10
@@ -128,4 +128,3 @@ resource "google_compute_firewall" "default-hc" {
   target_tags             = var.target_tags
   target_service_accounts = var.target_service_accounts
 }
-
