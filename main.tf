@@ -61,7 +61,7 @@ resource "google_compute_region_backend_service" "default" {
 resource "google_compute_health_check" "tcp" {
   count   = var.health_check["type"] == "tcp" ? 1 : 0
   project = var.project
-  name    = "${var.name}-hc-tcp"
+  name    = "${var.name}-hc"
 
   timeout_sec         = var.health_check["timeout_sec"]
   check_interval_sec  = var.health_check["check_interval_sec"]
@@ -80,7 +80,7 @@ resource "google_compute_health_check" "tcp" {
 resource "google_compute_health_check" "http" {
   count   = var.health_check["type"] == "http" ? 1 : 0
   project = var.project
-  name    = "${var.name}-hc-http"
+  name    = "${var.name}-hc"
 
   timeout_sec         = var.health_check["timeout_sec"]
   check_interval_sec  = var.health_check["check_interval_sec"]
