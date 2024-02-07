@@ -171,3 +171,9 @@ variable "labels" {
   default     = {}
   type        = map(string)
 }
+
+variable "skip_network" {
+  description = "Hack to workaround the v4.5.1 network param adition."
+  default     = false
+  type        = bool
+}
