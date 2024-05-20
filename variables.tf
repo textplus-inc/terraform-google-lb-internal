@@ -178,3 +178,9 @@ variable "is_mirroring_collector" {
   default     = false
   type        = bool
 }
+
+variable "skip_network" {
+  description = "Hack to workaround the v4.5.1 network param adition."
+  default     = false
+  type        = bool
+}

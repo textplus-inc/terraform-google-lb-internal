@@ -54,7 +54,7 @@ resource "google_compute_region_backend_service" "default" {
   }[var.health_check["type"]]
   region   = var.region
   protocol = var.ip_protocol
-  network  = data.google_compute_network.network.self_link
+  network  = var.skip_network ? null : data.google_compute_network.network.self_link
   # Do not try to add timeout_sec, as it is has no impact. See https://github.com/terraform-google-modules/terraform-google-lb-internal/issues/53#issuecomment-893427675
   connection_draining_timeout_sec = var.connection_draining_timeout_sec
   session_affinity                = var.session_affinity
