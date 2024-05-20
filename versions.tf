@@ -15,7 +15,7 @@
  */
 
 terraform {
-  required_version = ">= 0.13"
+  required_version = ">= 1.3"
   required_providers {
     google = {
       source  = "hashicorp/google"
@@ -29,10 +29,10 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-lb-internal/v5.1.0"
+    module_name = "blueprints/terraform/terraform-google-lb-internal/v6.0.0"
   }
 
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-lb-internal/v5.1.0"
+    module_name = "blueprints/terraform/terraform-google-lb-internal/v6.0.0"
   }
 }

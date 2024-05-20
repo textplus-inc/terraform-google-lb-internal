@@ -67,12 +67,13 @@ variable "session_affinity" {
 }
 
 variable "ports" {
-  description = "List of ports range to forward to backend services. Max is 5."
+  description = "List of ports to forward to backend services. Max is 5. The `ports` or `all_ports` are mutually exclusive."
   type        = list(string)
+  default     = null
 }
 
 variable "all_ports" {
-  description = "Boolean for all_ports setting on forwarding rule."
+  description = "Boolean for all_ports setting on forwarding rule. The `ports` or `all_ports` are mutually exclusive."
   type        = bool
   default     = null
 }
@@ -81,18 +82,18 @@ variable "health_check" {
   description = "Health check to determine whether instances are responsive and able to do work"
   type = object({
     type                = string
-    check_interval_sec  = number
-    healthy_threshold   = number
-    timeout_sec         = number
-    unhealthy_threshold = number
-    response            = string
-    proxy_header        = string
-    port                = number
-    port_name           = string
-    request             = string
-    request_path        = string
-    host                = string
-    enable_log          = bool
+    check_interval_sec  = optional(number)
+    healthy_threshold   = optional(number)
+    timeout_sec         = optional(number)
+    unhealthy_threshold = optional(number)
+    response            = optional(string)
+    proxy_header        = optional(string)
+    port                = optional(number)
+    port_name           = optional(string)
+    request             = optional(string)
+    request_path        = optional(string)
+    host                = optional(string)
+    enable_log          = optional(bool)
   })
 }
 
@@ -170,6 +171,12 @@ variable "labels" {
   description = "The labels to attach to resources created by this module."
   default     = {}
   type        = map(string)
+}
+
+variable "is_mirroring_collector" {
+  description = "Indicates whether or not this load balancer can be used as a collector for packet mirroring. This can only be set to true for load balancers that have their loadBalancingScheme set to INTERNAL."
+  default     = false
+  type        = bool
 }
 
 variable "skip_network" {
